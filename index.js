@@ -9,6 +9,8 @@ const app = express()
 const port = 5000
 app.use(cors())
 app.use(express.json())
+
+
 //Api Routes
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes',require('./routes/notes'))

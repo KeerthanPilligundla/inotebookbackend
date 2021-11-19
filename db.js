@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
-const mongoURI = "mongodb://localhost:27017/iNotebook?readPreference=primary&appname=MongoDB%20Compass&ssl=false"; 
-
+const dotenv = require('dotenv')
+require('dotenv').config();
+const mongoURI =  process.env.MONGODB_CONNECTION_URL;
 const connectToMongo = ()=>{
-    mongoose.connect(mongoURI, ()=>{
-        console.log("Connected to Mongo Sucessfully")
+mongoose.connect(mongoURI,{useNewUrlParser: true, useUnifiedTopology: true}).then(()=>{
+    console.log("Connected to Mongo Sucessfully")
+    }).catch(error=>{
+        console.log('Error :',error.message); 
     })
 }
-
 module.exports = connectToMongo;
